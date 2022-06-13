@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-// import AppLoading from 'expo-app-loading';
+import React, { useState, useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   TouchableOpacity,
   FlatList,
@@ -8,16 +8,17 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import tw from "tailwind-react-native-classnames";
-import {
-  useFonts,
-  LuckiestGuy_400Regular,
-} from "@expo-google-fonts/luckiest-guy";
 
-import Tasks from "../components/Tasks";
+import { StatusBar } from "expo-status-bar";
+// import AppLoading from 'expo-app-loading';
+// import tw from "tailwind-react-native-classnames";
+// import {
+//   useFonts,
+//   LuckiestGuy_400Regular,
+// } from "@expo-google-fonts/luckiest-guy";
 
-export default function Home() {
-  const [task, setTask] = useState([
+export default function Home({ navigation }) {
+  const [tasks, setTasks] = useState([
     {
       title: "Study Math",
       streak: 4,
@@ -45,116 +46,69 @@ export default function Home() {
   ]);
 
   return (
-    <ScrollView style={[styles.background, { flex: 1 }]}>
-      <FlatList>
-        data={task}
-        renderItem=
-        {({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate("Tasks", item)}>
-            <Text>{item.title}</Text>
-          </TouchableOpacity>
-        )}
-      </FlatList>
-      {/* <View>
-        <Text style={[styles.text, { marginVertical: 20, marginLeft: 15 }]}>
-          Your Tasks:
-        </Text>
+    <View style={[styles.background, { flex: 1 }]}>
+      <View>
+        <Text style={styles.headerText}>Your Tasks:</Text>
       </View>
-      <View style={tw.style("flex flex-col")}>
-        <Tasks />
-      </View> */}
-    </ScrollView>
-
-    // let [fontsLoaded] = useFonts({
-    //     LuckiestGuy_400Regular,
-    //   });
-
-    //   if (!fontsLoaded) {
-    //     return (
-    //       <View>
-    //         <Text>Hi! I am having trouble!</Text>
-    //       </View>
-    //     );
-    //   }
-
-    // <View
-    //   style={[
-    //     tw.style("justify-center items-center flex-1"),
-    //     styles.background,
-    //   ]}
-    // >
-    //   <Text
-    //     style={[
-    //       { fontFamily: "LuckiestGuy_400Regular", fontSize: 90 },
-    //       styles.text,
-    //       styles.textShadow,
-    //     ]}
-    //   >
-    //     1%
-    //   </Text>
-    //   <Text style={[tw.style("text-2xl"), styles.text, styles.textShadow]}>
-    //     Small steps, big results
-    //   </Text>
-    //   <StatusBar style="auto" />
-    //   <TouchableOpacity
-    //     onPress={() => {}}
-    //     style={[
-    //       tw.style("rounded-lg justify-center items-center"),
-    //       styles.button,
-    //     ]}
-    //     accessibilityLabel="Learn more about this purple button"
-    //   >
-    //     <Text
-    //       style={[
-    //         tw.style("text-2xl font-bold"),
-    //         styles.text,
-    //         styles.textShadow,
-    //       ]}
-    //     >
-    //       Login
-    //     </Text>
-    //   </TouchableOpacity>
-    // </View>
+      <FlatList
+        data={tasks}
+        renderItem={({ item }) => (
+          //   <LinearGradient
+          //     colors={["rgba(99, 102, 241, 0.75)", "transparent"]}
+          //     style={[styles.container, styles.shadowProps]}
+          //     start={[0.2, 0]}
+          //     end={[1.3, 0]}
+          //   >
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Tasks", item)}
+            style={[styles.container, styles.shadowProps]}
+          >
+            <Text style={styles.text}>{item.title}</Text>
+          </TouchableOpacity>
+          //   </LinearGradient>
+        )}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
-    // backgroundColor: "#008DD5",
-    backgroundColor: "#0c1e3e",
+    // backgroundColor: "#0c1e3e",
+    backgroundColor: "#FFF",
   },
-  text: {
-    color: "#FFF",
-    textShadowColor: "rgba(0, 0, 0, 0.25)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2,
-    // fontFamily: "LuckiestGuy_400Regular",
-    fontSize: 20,
+  headerText: {
+    color: "black",
+    fontSize: 30,
+    fontFamily: "AppleSDGothicNeo-SemiBold",
     paddingLeft: 10,
     paddingVertical: 20,
+    alignContent: "center",
   },
-  textShadow: {
+  text: {
+    color: "black",
     textShadowColor: "rgba(0, 0, 0, 0.25)",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2,
-  },
-  button: {
-    width: 175,
-    height: 60,
-    top: 175,
-    backgroundColor: "#739E82",
-    borderBottomWidth: 3,
-    borderBottomColor: "#2C5530",
+    fontSize: 20,
+    fontFamily: "AppleSDGothicNeo-SemiBold",
+    paddingLeft: 10,
+    paddingVertical: 20,
   },
   container: {
-    borderBottomWidth: 1.5,
-    borderTopWidth: 1.5,
-    borderColor: "rgba(99, 102, 241, 0.75);",
+    borderRadius: 8,
+    marginBottom: 20,
+    backgroundColor: "#FFF",
+    width: "65%",
+    height: 76,
+    // borderBottomWidth: 1.5,
+    // borderTopWidth: 1.5,
+    // borderColor: "rgba(99, 102, 241, 0.75);",
   },
-  text: {
-    color: "#fff",
-    fontSize: 20,
-    paddingLeft: 10,
-    paddingVertical: 20,
+  shadowProps: {
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });
