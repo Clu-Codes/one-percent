@@ -18,7 +18,6 @@ const screens = {
       },
       headerTintColor: "#FFF1D0",
       headerTitleStyle: {
-        // fontFamily: "LuckiestGuy_400Regular",
         fontSize: 23,
       },
     },
@@ -26,6 +25,13 @@ const screens = {
       screen: Tasks,
       navigationOptions: {
         title: "Tasks",
+        headerStyle: {
+          backgroundColor: "#0c1e3e",
+        },
+        headerTintColor: "#FFF1D0",
+        headerTitleStyle: {
+          fontSize: 23,
+        },
       },
     },
   },

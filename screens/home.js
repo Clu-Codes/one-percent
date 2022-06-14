@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
 } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
@@ -53,18 +52,20 @@ export default function Home({ navigation }) {
       <FlatList
         data={tasks}
         renderItem={({ item }) => (
+          <TouchableOpacity
+            style={[styles.container, styles.shadowProps]}
+            onPress={() => {
+              console.log(item), navigation.navigate("Tasks", item);
+            }}
+          >
+            <Text style={styles.text}>{item.title}</Text>
+          </TouchableOpacity>
           //   <LinearGradient
           //     colors={["rgba(99, 102, 241, 0.75)", "transparent"]}
           //     style={[styles.container, styles.shadowProps]}
           //     start={[0.2, 0]}
           //     end={[1.3, 0]}
           //   >
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Tasks", item)}
-            style={[styles.container, styles.shadowProps]}
-          >
-            <Text style={styles.text}>{item.title}</Text>
-          </TouchableOpacity>
           //   </LinearGradient>
         )}
       />
