@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { LinearGradient } from "expo-linear-gradient";
 import {
   TouchableOpacity,
   FlatList,
   StyleSheet,
   Text,
   View,
+  Image,
 } from "react-native";
-
 import { StatusBar } from "expo-status-bar";
-// import AppLoading from 'expo-app-loading';
-// import tw from "tailwind-react-native-classnames";
-// import {
-//   useFonts,
-//   LuckiestGuy_400Regular,
-// } from "@expo-google-fonts/luckiest-guy";
+import AppLoading from "expo-app-loading";
 
-export default function Home({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [tasks, setTasks] = useState([
     {
       title: "Study Math",
@@ -45,7 +39,7 @@ export default function Home({ navigation }) {
   ]);
 
   return (
-    <View style={[styles.background, { flex: 1 }]}>
+    <View style={[styles.background]}>
       <View>
         <Text style={styles.headerText}>Your Tasks:</Text>
       </View>
@@ -55,31 +49,47 @@ export default function Home({ navigation }) {
           <TouchableOpacity
             style={[styles.container, styles.shadowProps]}
             onPress={() => {
-              console.log(item), navigation.navigate("Tasks", item);
+              navigation.navigate("Tasks", item);
             }}
           >
             <Text style={styles.text}>{item.title}</Text>
           </TouchableOpacity>
-          //   <LinearGradient
-          //     colors={["rgba(99, 102, 241, 0.75)", "transparent"]}
-          //     style={[styles.container, styles.shadowProps]}
-          //     start={[0.2, 0]}
-          //     end={[1.3, 0]}
-          //   >
-          //   </LinearGradient>
         )}
       />
+      <View
+        style={{
+          width: "100%",
+          alignItems: "flex-end",
+          right: 55,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#fff",
+            width: 60,
+            height: 60,
+            borderRadius: 50,
+            bottom: 55,
+          }}
+        >
+          <Image
+            style={{ alignSelf: "center", top: 3, zIndex: 9999 }}
+            source={require("../assets/pencil.webp")}
+          />
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
-    // backgroundColor: "#0c1e3e",
-    backgroundColor: "#FFF",
+    backgroundColor: "#0c1e3e",
+    // backgroundColor: "#FFF",
+    flex: 1,
   },
   headerText: {
-    color: "black",
+    color: "#fff",
     fontSize: 30,
     fontFamily: "AppleSDGothicNeo-SemiBold",
     paddingLeft: 10,
@@ -89,9 +99,9 @@ const styles = StyleSheet.create({
   text: {
     color: "black",
     textShadowColor: "rgba(0, 0, 0, 0.25)",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2,
-    fontSize: 20,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
+    fontSize: 25,
     fontFamily: "AppleSDGothicNeo-SemiBold",
     paddingLeft: 10,
     paddingVertical: 20,
@@ -100,16 +110,19 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 20,
     backgroundColor: "#FFF",
-    width: "65%",
+    width: "85%",
     height: 76,
-    // borderBottomWidth: 1.5,
-    // borderTopWidth: 1.5,
-    // borderColor: "rgba(99, 102, 241, 0.75);",
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   shadowProps: {
     shadowColor: "#171717",
     shadowOffset: { width: -2, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+  },
+  image: {
+    backgroundColor: "tomato",
   },
 });
