@@ -57,26 +57,41 @@ export default function HomeScreen({ navigation }) {
         )}
       />
       <View
-        style={{
-          width: "100%",
-          alignItems: "flex-end",
-          right: 55,
-        }}
+        style={[
+          {
+            width: "100%",
+            alignItems: "flex-end",
+            right: 45,
+          },
+          // styles.shadowProps,
+        ]}
       >
-        <View
-          style={{
-            backgroundColor: "#fff",
-            width: 60,
-            height: 60,
-            borderRadius: 50,
-            bottom: 55,
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("CreateTask");
           }}
+          style={[
+            {
+              backgroundColor: "#fff",
+              width: 60,
+              height: 60,
+              borderRadius: 50,
+              bottom: 55,
+            },
+            styles.shadowProps,
+          ]}
         >
           <Image
-            style={{ alignSelf: "center", top: 3, zIndex: 9999 }}
+            style={{
+              alignSelf: "center",
+              top: 10,
+              zIndex: 9999,
+              width: 40,
+              height: 40,
+            }}
             source={require("../assets/pencil.webp")}
           />
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -84,14 +99,17 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "#0c1e3e",
-    // backgroundColor: "#FFF",
+    // backgroundColor: "#0c1e3e",
+    backgroundColor: "#F8F8FF",
     flex: 1,
   },
   headerText: {
-    color: "#fff",
+    color: "#000",
     fontSize: 30,
     fontFamily: "AppleSDGothicNeo-SemiBold",
+    textShadowColor: "rgba(0, 0, 0, 0.25)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
     paddingLeft: 10,
     paddingVertical: 20,
     alignContent: "center",

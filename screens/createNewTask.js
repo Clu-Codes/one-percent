@@ -1,30 +1,34 @@
-import React, { useState } from "react";
-import { SafeAreaView, Text, TextInput, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+} from "react-native";
 
-export default function TaskScreen({ route, navigation }) {
-  const { title, streak, details } = route.params;
-  const [description, onChangeDescription] = useState(details);
-  const [streakCount, setStreakCount] = useState(streak);
+export default function TaskCreationScreen({ route, navigation }) {
+  const [title, setTitle] = useState("");
+  const [details, setDetails] = useState("");
+  const [streak, setStreak] = useState(0);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.titleText}>{title}</Text>
-      <Text
-        onPress={() => {
-          setStreakCount(streakCount + 1);
-        }}
-        style={[styles.streak]}
-      >
-        {streakCount}
-      </Text>
       <TextInput
-        onChangeText={onChangeDescription}
-        value={description}
+        onChangeText={(text) => setTitle(text)}
+        value={title}
+        style={[styles.titleInput, styles.shadowProps, styles.entryBox]}
+        placeholder="Task Title"
+      />
+      <TextInput
+        onChangeText={(text) => setDetails(text)}
+        value={details}
         multiline={true}
         style={[styles.description, styles.shadowProps]}
-      >
-        {/* {description} */}
-      </TextInput>
+        placeholder="Task Details"
+      />
     </SafeAreaView>
   );
 }
@@ -35,16 +39,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F8FF",
     alignItems: "center",
   },
-  titleText: {
+  focused: {
+    borderWidth: 2,
+    borderColor: "blue",
+    borderStyle: "solid",
+  },
+  titleInput: {
     color: "#000",
     fontSize: 30,
     fontFamily: "AppleSDGothicNeo-SemiBold",
-    textShadowColor: "rgba(0, 0, 0, 0.25)",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
     fontWeight: "bold",
     marginBottom: 20,
     paddingTop: 20,
+  },
+  entryBox: {
+    width: "80%",
+    height: 65,
+    borderRadius: 10,
+    backgroundColor: "#fff",
+    marginTop: 20,
+    paddingHorizontal: 8,
+    paddingVertical: 15,
   },
   streak: {
     fontSize: 28,
