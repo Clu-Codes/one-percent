@@ -6,6 +6,7 @@ import {
   Text,
   SafeAreaView,
   Image,
+  ScrollView,
 } from "react-native";
 
 export default function TaskCreationScreen({ route, navigation }) {
@@ -16,19 +17,21 @@ export default function TaskCreationScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput
-        onChangeText={(text) => setTitle(text)}
-        value={title}
-        style={[styles.titleInput, styles.shadowProps, styles.entryBox]}
-        placeholder="Task Title"
-      />
-      <TextInput
-        onChangeText={(text) => setDetails(text)}
-        value={details}
-        multiline={true}
-        style={[styles.description, styles.shadowProps]}
-        placeholder="Task Details"
-      />
+      <ScrollView>
+        <TextInput
+          onChangeText={(text) => setTitle(text)}
+          value={title}
+          style={[styles.titleInput, styles.shadowProps, styles.entryBox]}
+          placeholder="Task Title"
+        />
+        <TextInput
+          onChangeText={(text) => setDetails(text)}
+          value={details}
+          multiline={true}
+          style={[styles.description, styles.shadowProps]}
+          placeholder="Task Details"
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
