@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-// import { View, Text, StyleSheet, Image } from "react-native";
+import { StyleSheet } from "react-native";
 
 import HomeScreen from "./screens/home.js";
 import TaskScreen from "./screens/tasks.js";
@@ -17,16 +17,21 @@ export default function App() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             const icons = {
-              Home: 'home',
-              Tasks: 'list',
-              Create: 'add',
+              Home: "home",
+              Tasks: "list",
+              CreateTask: "add-circle-outline",
             };
 
             return (
-            <Ionicons name={icons[route.name]} size={size} color={color} />
+              <Ionicons
+                name={icons[route.name]}
+                size={size}
+                color={color}
+                style={focused ? styles.shadowProps : {}}
+              />
             );
-        },
-      })}
+          },
+        })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Tasks" component={TaskScreen} />
@@ -35,6 +40,15 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  shadowProps: {
+    shadowColor: "#171717",
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+});
 
 // options={{
 //   tabBarIcon: ({ focused }: any) => (

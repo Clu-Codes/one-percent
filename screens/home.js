@@ -65,34 +65,7 @@ export default function HomeScreen({ navigation }) {
           },
           // styles.shadowProps,
         ]}
-      >
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("CreateTask");
-          }}
-          style={[
-            {
-              backgroundColor: "#fff",
-              width: 60,
-              height: 60,
-              borderRadius: 50,
-              bottom: 55,
-            },
-            styles.shadowProps,
-          ]}
-        >
-          <Image
-            style={{
-              alignSelf: "center",
-              top: 10,
-              zIndex: 9999,
-              width: 40,
-              height: 40,
-            }}
-            source={require("../assets/pencil.webp")}
-          />
-        </TouchableOpacity>
-      </View>
+      ></View>
     </View>
   );
 }
